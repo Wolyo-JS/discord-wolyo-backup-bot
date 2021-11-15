@@ -4,8 +4,8 @@ const mongoose = require("mongoose")
 const CF = require('./config')
 const GK = require('./guvenilirliste.json')
 
-const RolesDB = require('./Models/DataBaseRoles')
-const ChannelsDB = require('./Models/DataBaseChannels')
+const RolesDB = require('./Models/RoleData')
+const ChannelsDB = require('./Models/ChannelData')
 
 client.on('ready', async() => {
 client.user.setPresence({ activity: { name: CF.ServerMessage }, status: CF.ServerCase });
@@ -32,11 +32,11 @@ if (guvenilirliste.some(g => g.includes(member.id))) {
 guvenilirliste = guvenilirliste.filter(g => !g.includes(member.id));
 GK.Guvenilir = guvenilirliste;
 fs.writeFile("./guvenilirliste.json", JSON.stringify(GK), (err) => {if (err) console.log(err)})
-message.channel.send(embed.setDescription(`${member} artık güvenli listede değil. 🚫`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))
+message.channel.send(embed.setDescription(`${member} güvenli listeden kaldırıldı`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))
 } else {
 GK.Guvenilir.push(`${member.id}`);
 fs.writeFile("./guvenilirliste.json", JSON.stringify(GK), (err) => {if (err) console.log(err)});
-message.channel.send(embed.setDescription(`${member} artık güvenli listede. ✅`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))}
+message.channel.send(embed.setDescription(`${member} güvenli listeye eklendi`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))}
 };
 
 if(command === 'güvenli-liste' || command === 'liste') { 
@@ -46,7 +46,7 @@ let gmap = guvenilirliste > 0 ? guvenilirliste.map(x => message.guild.members.ca
 message.channel.send(embed.addField("Güvenli Liste", guvenilirliste.length > 0 ? guvenilirliste.map(g => (message.guild.members.cache.has(g.slice(1)) ? (message.guild.members.cache.get(g.slice(1))) : g)).join('\n') : "Güvenilir listede kimse yok."))
 }
 
-if(command == "rol-yedekle" || command == "rol-yedek-al") {
+if(command == "rol-kayıt" || command == "wolyoveri") {
 message.channel.send(`İşlem tamamlandı. \`✅\``)    
 //Kanal Save
 message.guild.roles.cache.filter(x => x.name !== "@everyone").map(async(role) => {
