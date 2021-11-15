@@ -15,7 +15,7 @@ RolLog: "",
 
 BildirimKanalı: "", // Bu kanal tek bir kanal ve banlayamaz veya ceza veremezse buraya bildiriyor.
 
-ServerMessage: "Striga ❤️ Striga",
-ServerCase: "dnd",
-Footer: "Striga ❤️ Striga"
+ServerMessage: "", // bot durum
+ServerCase: "", // dnd idle online 
+Footer: "" // footer 
 }
