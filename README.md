@@ -8,5 +8,5 @@ Eski backup botum star at çok güclü bi guard gelsin
 30 starda yeni bot gelicek
 
 
-#Kurulum
+# Kurulum
 Hepsinu yazacam üşendim
