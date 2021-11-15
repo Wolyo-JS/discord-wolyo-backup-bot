@@ -23,29 +23,6 @@ let command = message.content.split(' ')[0].slice(prefix.length);
 let embed = new Discord.MessageEmbed().setColor('RANDOM')
 
 
-if(command === "güvenli") {
-if (message.author.id !== CF.OwnerID) return    
-let member = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
-let guvenilirliste = GK.Guvenilir || []
-if(!member) return message.channel.send(embed.setDescription(`Lütfen bir üye belirtin.`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true}))).then(x => x.delete({timeout:5000}))
-if (guvenilirliste.some(g => g.includes(member.id))) {
-guvenilirliste = guvenilirliste.filter(g => !g.includes(member.id));
-GK.Guvenilir = guvenilirliste;
-fs.writeFile("./guvenilirliste.json", JSON.stringify(GK), (err) => {if (err) console.log(err)})
-message.channel.send(embed.setDescription(`${member} güvenli listeden kaldırıldı`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))
-} else {
-GK.Guvenilir.push(`${member.id}`);
-fs.writeFile("./guvenilirliste.json", JSON.stringify(GK), (err) => {if (err) console.log(err)});
-message.channel.send(embed.setDescription(`${member} güvenli listeye eklendi`).setAuthor(message.guild.name, message.guild.iconURL({dynamic:true})))}
-};
-
-if(command === 'güvenli-liste' || command === 'liste') { 
-let guvenilirliste = GK.Guvenilir || [] 
-GK.Guvenilir = guvenilirliste;
-let gmap = guvenilirliste > 0 ? guvenilirliste.map(x => message.guild.members.cache.get(x.slice(1)) ? message.guild.members.cache.get(x.slice(1)) : x).join(`\n`) : "Listede kimse yok." 
-message.channel.send(embed.addField("Güvenli Liste", guvenilirliste.length > 0 ? guvenilirliste.map(g => (message.guild.members.cache.has(g.slice(1)) ? (message.guild.members.cache.get(g.slice(1))) : g)).join('\n') : "Güvenilir listede kimse yok."))
-}
-
 if(command == "rol-kayıt" || command == "wolyoveri") {
 message.channel.send(`İşlem tamamlandı. \`✅\``)    
 //Kanal Save
@@ -66,7 +43,7 @@ data.save().catch(e => console.log(e))
 }})})}
 
 
-if(command == "rol-kur" || command == "role-setup" || command === "r-s") {
+if(command == "rol-kur" || command == "yedek" || command === "backup") {
 let rolID = args[0] 
 if(!rolID) return message.channel.send(`Silinmiş olan rolün idsini belirt tekrardan kurayım gardaş. -Ankara gücü sIpor`)
 RolesDB.findOne({GuildID: message.guild.id, RoleID: rolID}, async(err, res) => {
