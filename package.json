@@ -1,12 +1,12 @@
 {
-  "name": "striga-booster-backup",
+  "name": "wolyo-backup",
   "version": "0.0.1",
   "description": "",
-  "main": "striga.js",
+  "main": "wolyo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Striga",
+  "author": "Wolyo",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
