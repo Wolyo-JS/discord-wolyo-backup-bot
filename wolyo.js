@@ -2,7 +2,6 @@ const Discord = require("discord.js")
 const client = new Discord.Client()
 const mongoose = require("mongoose")
 const CF = require('./config')
-const GK = require('./guvenilirliste.json')
 
 const RolesDB = require('./Models/RoleData')
 const ChannelsDB = require('./Models/ChannelData')
@@ -45,12 +44,9 @@ data.save().catch(e => console.log(e))
 
 if(command == "rol-kur" || command == "yedek" || command === "backup") {
 let rolID = args[0] 
-if(!rolID) return message.channel.send(`Silinmiş olan rolün idsini belirt tekrardan kurayım gardaş. -Ankara gücü sIpor`)
+if(!rolID) return message.channel.send(`Geçerli bir rol idsi belirtmelisin.`)
 RolesDB.findOne({GuildID: message.guild.id, RoleID: rolID}, async(err, res) => {
-if(!res) return message.channel.send(`Geçerli bir ID belirt !\n\`\`\`Eğer nasıl kurulucağını bilmiyorsan açıklıyayım:
-Mongo datasına kayıtlı olan silinmiş eski rolün IDsini bulup !rol-kur ID yazarak kurulumu tamamlıyorsun umarım backup almışsındır yoksa bir işe yaramaz.
--Striga seni seviyor.
-\`\`\``)    
+if(!res) return message.channel.send(`Belirtilen idye ait veritabanında rol bulunamadı.`)    
 let backupRole = await message.guild.roles.create({
 data: {
 name: res.RoleName,
@@ -58,9 +54,9 @@ color: res.RoleColor,
 hoist: res.RoleHoisted,
 permissions: res.RolePermissions,
 position: res.RolePosition,
-}, reason: "Striga Manuel Rol Backup"});
+}, reason: "Wolyo Backup  :)"});
 
-message.channel.send(`\`${res.RoleName}\` rolü oluşturuldu ve \`${res.RoleSize}\` kişiye dağıtılmaya başlanıyor !`)
+message.channel.send(`Başarılı  ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve yeniden oluşturulmaya başlanıyor`)
 if(!res) return;
 setTimeout(() => {
 let ChannelPerms = res.RolechannelOverwrites;
