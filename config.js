@@ -1,19 +1,20 @@
 module.exports = {
-OwnerID: "",
-GuildID: "",
-VoiceID: "",
-Token: "",
-MongoURL: "",
-Prefix: ["!", "."],
+OwnerID: "", // sahip id
+GuildID: "", // sunucu id
+VoiceID: "", // botun gireceği ses kanal id
+Token: "", // tokenin
+MongoURL: "",  // mongo urlsi girmezsen bot çapışmaz
+Prefix: ["!", "."], // istediğiniz kadar çoğaltabilirsini,
 
-GuardBots: [""],
-BotRoles: [""],
-JailRole: "",
-BoosterRole: "",
+GuardBots: [""], // koruma botlarının idleri
+BotRoles: [""], // diğer botların idleri
+JailRole: "", // jail rol
+BoosterRole: "", // booster rol
 
-RolLog: "",
+RolLog: "", // rol log işte
 
-BildirimKanalı: "", // Bu kanal tek bir kanal ve banlayamaz veya ceza veremezse buraya bildiriyor.
+BildirimKanalı: "", // log kanalı 
+
 
 ServerMessage: "", // bot durum
 ServerCase: "", // dnd idle online 
