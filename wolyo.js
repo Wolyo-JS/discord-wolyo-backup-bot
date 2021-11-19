@@ -56,9 +56,7 @@ permissions: res.RolePermissions,
 position: res.RolePosition,
 }, reason: "Wolyo Backup  :)"});
 
-const embed = new Discord.MessageEmbed().setColor('BLUE').setDescription('Başarılı  ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor').setFooter('Wars ❤ Wolyo')
-
-message.channel.send(embed)
+message.channel.send("Başarılı ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor")
 if(!res) return;
 setTimeout(() => {
 let ChannelPerms = res.RolechannelOverwrites;
