@@ -42,11 +42,11 @@ data.save().catch(e => console.log(e))
 }})})}
 
 
-if(command == "rol-kur" || command == "yedek" || command === "backup") {
+if(command == "rol-kur" || command == "backup" || command === "wbackup") {
 let rolID = args[0] 
-if(!rolID) return message.channel.send(`Geçerli bir rol idsi belirtmelisin.`)
+if(!rolID) return message.channel.send(`Geçerli bir rol ID'si belirtmelisin`)
 RolesDB.findOne({GuildID: message.guild.id, RoleID: rolID}, async(err, res) => {
-if(!res) return message.channel.send(`Belirtilen idye ait veritabanında rol bulunamadı.`)    
+if(!res) return message.channel.send(`Rol ID'si Geçersiz`)    
 let backupRole = await message.guild.roles.create({
 data: {
 name: res.RoleName,
@@ -54,9 +54,9 @@ color: res.RoleColor,
 hoist: res.RoleHoisted,
 permissions: res.RolePermissions,
 position: res.RolePosition,
-}, reason: "Wolyo Backup  :)"});
+}, reason: "Wolyo Backup :)"});
 
-message.channel.send(`Başarılı ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor`)
+message.channel.send(`\`${res.RoleName}\` rolü oluşturuldu ve \`${res.RoleSize}\` kişiye dağıtılmaya başlanıyor ✅`)
 if(!res) return;
 setTimeout(() => {
 let ChannelPerms = res.RolechannelOverwrites;
@@ -76,6 +76,7 @@ if (!x || x.roles.cache.has(backupRole.id)) return;
 setTimeout(() => {x.roles.add(backupRole.id).catch();}, i*2000)})
 })}
 })
+
 
 
 mongoose.connect(CF.MongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
