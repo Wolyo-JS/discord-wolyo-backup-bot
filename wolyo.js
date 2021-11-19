@@ -23,7 +23,7 @@ let embed = new Discord.MessageEmbed().setColor('RANDOM')
 
 
 if(command == "rol-kayıt" || command == "wolyoveri") {
-message.channel.send(`İşlem tamamlandı. \`✅\``)    
+message.channel.send(`✅ Sunucu rolleri veritabaına yedeklendi`)    
 //Kanal Save
 message.guild.roles.cache.filter(x => x.name !== "@everyone").map(async(role) => {
 let roleChannelOverwrites = [];    
@@ -79,31 +79,4 @@ setTimeout(() => {x.roles.add(backupRole.id).catch();}, i*2000)})
 
 
 mongoose.connect(CF.MongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
-client.login(CF.Token).then(function(){console.log(`${client.user.tag} açıldı`)}, function(err){console.log('Token geçersiz.')})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+client.login(process.env.token).then(function(){console.log(`${client.user.tag} açıldı`)}, function(err){console.log('Token geçersiz.')})
