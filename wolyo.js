@@ -56,7 +56,7 @@ permissions: res.RolePermissions,
 position: res.RolePosition,
 }, reason: "Wolyo Backup  :)"});
 
-message.channel.send("Başarılı ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor")
+message.channel.send(`Başarılı ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor`)
 if(!res) return;
 setTimeout(() => {
 let ChannelPerms = res.RolechannelOverwrites;
