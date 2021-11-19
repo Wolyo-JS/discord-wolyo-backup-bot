@@ -1,10 +1,10 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const mongoose = require("mongoose")
+const keep_alive = require('./keep_alive.js')
 const CF = require('./config')
 
 const RolesDB = require('./Models/RoleData')
-const ChannelsDB = require('./Models/ChannelData')
 
 client.on('ready', async() => {
 client.user.setPresence({ activity: { name: CF.ServerMessage }, status: CF.ServerCase });
@@ -56,7 +56,9 @@ permissions: res.RolePermissions,
 position: res.RolePosition,
 }, reason: "Wolyo Backup  :)"});
 
-message.channel.send(`Başarılı  ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve yeniden oluşturulmaya başlanıyor`)
+const embed = new Discord.MessageEmbed().setColor('BLUE').setDescription('Başarılı  ✅ belirtilen idye ait veritabanında **${res.RoleName}** isimli rol bulundu ve rol yeniden oluşturulmaya başlanıyor').setFooter('Wars ❤ Wolyo')
+
+message.channel.send(embed)
 if(!res) return;
 setTimeout(() => {
 let ChannelPerms = res.RolechannelOverwrites;
